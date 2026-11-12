@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTTP 请求追踪 · 想法与作品</title>
+  <script src="../theme.js"></script>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="theme-toggle" type="button" aria-label="深色模式" aria-pressed="false">
+      <span class="theme-symbol" aria-hidden="true"></span>
+    </button>
+    <a class="text-control" href="../">返回首页</a>
+  </header>
+
+  <main class="detail">
+    <article>
+      <p class="detail-meta">作品示例</p>
+      <h1>HTTP 请求追踪</h1>
+      <div class="detail-body">
+        <figure>
+          <img src="../media/http-trace.png" width="800" height="600" alt="一次 HTTP 请求的执行路径与各阶段耗时">
+        </figure>
+        <p>这个排版示例把一次 HTTP 请求拆成入口、业务处理和数据读取三段。请求 ID 放在开头，耗时对齐，读者可以先找到最慢的一步，再沿着同一个 ID 查对应日志。</p>
+        <p>如果做成实际项目，可以在这里放架构图、关键代码和项目链接。</p>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

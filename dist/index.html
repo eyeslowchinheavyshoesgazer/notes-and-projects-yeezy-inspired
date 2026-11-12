@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="软件工程、AI、后端开发与网页设计的想法和作品。">
+  <title>YANG SHUO · 想法与作品</title>
+  <script src="./theme.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="theme-toggle" type="button" aria-label="深色模式" aria-pressed="false">
+      <span class="theme-symbol" aria-hidden="true"></span>
+    </button>
+    <button class="text-control about-trigger" id="about-open" type="button" aria-haspopup="dialog" aria-controls="about">YANG SHUO</button>
+  </header>
+
+  <main class="catalog">
+    <h1 class="visually-hidden">想法与作品</h1>
+    <ul class="catalog-grid">
+      <li>
+        <a class="entry" href="./entries/http-trace.html">
+          <span class="entry-preview">
+            <img src="./media/http-trace.png" width="800" height="600" alt="HTTP 请求追踪">
+          </span>
+          <time class="entry-date" datetime="2026-11-12">11.12.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/simple-api.html">
+          <span class="entry-title">一个接口，怎样算简单？</span>
+          <time class="entry-date" datetime="2026-11-11">11.11.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/model-eval.html">
+          <span class="entry-preview">
+            <img src="./media/model-eval.png" width="800" height="600" alt="模型评估小样">
+          </span>
+          <time class="entry-date" datetime="2026-11-10">11.10.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/retries.html">
+          <span class="entry-title">重试之前，先想想失败发生在哪</span>
+          <time class="entry-date" datetime="2026-11-09">11.09.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/layout-study.html">
+          <span class="entry-preview">
+            <img src="./media/layout-study.png" width="800" height="600" alt="黑白排版练习">
+          </span>
+          <time class="entry-date" datetime="2026-11-08">11.08.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/eval-case.html">
+          <span class="entry-title">怎样写一条评估用例？</span>
+          <time class="entry-date" datetime="2026-11-07">11.07.2026</time>
+        </a>
+      </li>
+      <li>
+        <a class="entry" href="./entries/job-queue.html">
+          <span class="entry-preview">
+            <img src="./media/job-queue.png" width="800" height="600" alt="任务队列状态">
+          </span>
+          <time class="entry-date" datetime="2026-11-06">11.06.2026</time>
+        </a>
+      </li>
+    </ul>
+    <footer class="catalog-footer">示例内容</footer>
+  </main>
+
+  <dialog id="about" class="about" aria-labelledby="about-title">
+    <form method="dialog" class="about-close">
+      <button class="text-control" type="submit" autofocus>关闭</button>
+    </form>
+    <h2 id="about-title">YANG SHUO</h2>
+    <p>我关注软件工程、AI 和后端开发，也喜欢研究网页设计。这里放一些我在想的事和做出来的东西。</p>
+    <nav class="social-links" aria-label="社交平台">
+      <ul>
+        <li>
+          <a href="https://x.com/SsssssssS456788" target="_blank" rel="noopener noreferrer">
+            <img src="./media/social/x.png" width="24" height="24" alt="X">
+            <span class="social-url">x.com/SsssssssS456788</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/eyeslowchinheavyshoesgazer" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon--github" src="./media/social/github.png" width="24" height="24" alt="GitHub">
+            <span class="social-url">github.com/eyeslowchinheavyshoesgazer</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </dialog>
+</body>
+</html>
