@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>一个接口，怎样算简单？ · 想法与作品</title>
+  <title>What Makes an API Simple? · Notes and Projects</title>
   <script src="../theme.js"></script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <header class="topbar">
-    <button class="theme-toggle" type="button" aria-label="深色模式" aria-pressed="false">
+    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false">
       <span class="theme-symbol" aria-hidden="true"></span>
     </button>
-    <a class="text-control" href="../">返回首页</a>
+    <a class="text-control" href="../">Back to Home</a>
   </header>
 
   <main class="detail">
     <article>
-      <p class="detail-meta">想法示例</p>
-      <h1>一个接口，怎样算简单？</h1>
+      <p class="detail-meta">Sample Note</p>
+      <h1>What Makes an API Simple?</h1>
       <div class="detail-body">
-        <p>设计接口时，我会先写下调用方要完成的一个动作，再决定输入和返回值。以「查一条记录」为例，先约定记录存在、记录不存在、请求失败时，各自会返回什么。</p>
-        <p>接口是否容易用，可以请一个没看过实现的人试试。看看他能不能只凭一段示例处理这三种结果。</p>
+        <p>When I design an API, I start by writing down one thing the caller needs to do. Then I decide what the API should accept and return. For a request to fetch a record, I specify what comes back when the record exists, when it is missing, and when the request fails.</p>
+        <p>Ask someone unfamiliar with the implementation to try the API. See if they can handle all three outcomes using a single example.</p>
       </div>
     </article>
   </main>

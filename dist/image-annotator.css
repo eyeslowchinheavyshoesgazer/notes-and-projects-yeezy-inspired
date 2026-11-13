@@ -1,0 +1,138 @@
+.image-annotator {
+  width: min(54rem, calc(100% - 1.5rem));
+  max-width: none;
+  max-height: calc(100dvh - 1.5rem);
+  padding: clamp(0.875rem, 3vw, 1.75rem);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.image-annotator::backdrop { background: rgb(0 0 0 / 55%); }
+
+.image-annotator h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.image-annotator-toolbar,
+.image-annotator-tools,
+.image-annotator-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.image-annotator-toolbar { gap: 0.375rem 0.75rem; }
+
+.image-annotator button {
+  min-height: 2.75rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.image-annotator button:hover:not(:disabled) { border-color: var(--ink); }
+
+.image-annotator button[aria-pressed="true"],
+.image-annotator [data-save] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.image-annotator button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.image-annotator-color {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.image-annotator-color input {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.375rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.image-annotator-text:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.image-annotator-text input {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.image-annotator-stage {
+  display: grid;
+  justify-items: center;
+  margin-top: 0.875rem;
+  padding: 0.5rem;
+  border: 1px solid var(--ink);
+}
+
+.image-annotator-surface {
+  position: relative;
+  max-width: 100%;
+}
+
+.image-annotator canvas {
+  display: block;
+  max-width: 100%;
+  max-height: min(54dvh, 34rem);
+  background: var(--paper);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.image-annotator-cursor {
+  position: absolute;
+  visibility: hidden;
+  width: 0.75rem;
+  height: 0.75rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  border-radius: 50%;
+  outline: 1px solid #151515;
+  pointer-events: none;
+}
+
+.image-annotator canvas:focus-visible + .image-annotator-cursor { visibility: visible; }
+
+.image-annotator-actions {
+  justify-content: flex-end;
+  margin-top: 0.875rem;
+}
+
+.image-annotator-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.image-annotator-status:not(:empty) { margin-top: 0.75rem; }

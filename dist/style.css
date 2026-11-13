@@ -81,22 +81,30 @@ a { color: inherit; }
   padding: 0;
 }
 
+@property --planet-frame {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
 .theme-symbol {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  font: 22px/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  --planet-size: 26px;
+  --planet-frame: 0;
+  width: var(--planet-size);
+  height: var(--planet-size);
+  /* Each of the 25 frames is a complete view of the rotating sphere. */
+  background-image: url("./media/planet-toggle.png");
+  background-repeat: no-repeat;
+  background-size: calc(25 * var(--planet-size)) 100%;
+  background-position: calc(-1 * var(--planet-size) * var(--planet-frame)) center;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 24%));
+  transition: --planet-frame 520ms ease-in-out;
 }
 
-.theme-symbol::before {
-  content: "🌍";
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 20%));
-}
+:root[data-theme="dark"] .theme-symbol { --planet-frame: 24; }
 
-:root[data-theme="dark"] .theme-symbol::before {
-  content: "🌑";
-  filter: brightness(1.25) drop-shadow(0 0 1px rgb(255 255 255 / 35%));
+@media (prefers-reduced-motion: reduce) {
+  .theme-symbol { transition: none; }
 }
 
 .catalog {
@@ -169,6 +177,215 @@ a { color: inherit; }
   text-align: center;
   font-size: 0.75rem;
 }
+
+.catalog-footer a { text-decoration: none; }
+.catalog-footer a:hover { text-decoration: underline; }
+
+.feedback {
+  width: min(43.75rem, calc(100% - 2 * var(--page-gutter)));
+  margin: clamp(2.5rem, 11vh, 6rem) auto 4rem;
+}
+
+.feedback h1 {
+  margin: 0 0 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.feedback-form fieldset {
+  display: grid;
+  gap: 1.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.feedback-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.feedback-field :is(input, textarea) {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.feedback-field :is(input, textarea):focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.feedback-field textarea { min-height: 11rem; resize: vertical; }
+
+.feedback-field [hidden] { display: none; }
+
+.issue-editor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.issue-editor-heading label { flex: none; margin: 0; white-space: nowrap; }
+
+.issue-editor-actions {
+  display: grid;
+  flex: 0 1 19rem;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+
+.issue-tool {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.issue-tool:hover:not(:disabled) {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.issue-tool:focus-visible { outline-offset: -2px; }
+.issue-tool:disabled { opacity: 0.5; cursor: default; }
+
+.issue-tool svg { max-width: 100%; }
+
+@media (pointer: coarse) {
+  .issue-tool { min-height: 2.75rem; }
+}
+
+.issue-image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.issue-image-actions .text-control {
+  min-height: 2.25rem;
+  text-underline-offset: 0.24em;
+}
+
+.issue-preview {
+  min-height: 11rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--ink);
+  overflow-x: auto;
+  overflow-wrap: anywhere;
+}
+
+.issue-preview > :first-child { margin-top: 0; }
+.issue-preview > :last-child { margin-bottom: 0; }
+.issue-preview h1 { font-weight: 600; }
+.issue-preview pre { padding: 0.75rem; overflow: auto; border: 1px solid var(--muted); }
+.issue-preview code { font: 0.9em var(--mono); }
+.issue-preview table { border-collapse: collapse; }
+.issue-preview :is(th, td) { padding: 0.25rem 0.5rem; border: 1px solid var(--muted); }
+.issue-preview blockquote { margin-inline: 0; padding-inline-start: 1rem; border-left: 2px solid var(--muted); }
+.issue-preview-empty { color: var(--muted); }
+
+.issue-images {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.issue-image {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.issue-image img {
+  flex: none;
+  width: 68px;
+  height: 52px;
+  border: 1px solid var(--muted);
+  object-fit: contain;
+}
+
+.issue-image-details { min-width: 0; }
+.issue-image-name { display: block; overflow-wrap: anywhere; font-size: 0.875rem; }
+.issue-image-actions .text-control { color: var(--muted); font-size: 0.8125rem; }
+
+.work-picker { position: relative; }
+.work-picker input { min-height: 3.5rem; padding-inline-end: 3.25rem; }
+.work-picker input::placeholder { color: var(--muted); }
+
+.work-picker button {
+  position: absolute;
+  inset: 1px 1px 1px auto;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.work-picker button::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.work-menu {
+  position: absolute;
+  z-index: 1;
+  inset: calc(100% + 0.25rem) 0 auto;
+  max-height: 12rem;
+  overflow: auto;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-size: 0.9375rem;
+}
+
+.work-menu ul { margin: 0; padding: 0; list-style: none; }
+.work-menu :is(li, p) { margin: 0; padding: 0.65rem 1rem; }
+.work-menu li { cursor: pointer; }
+
+.work-menu li:hover,
+.work-menu li[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.feedback-submit {
+  min-height: 3.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.feedback-submit:focus-visible { outline-color: var(--ink); }
+.feedback-submit:disabled { opacity: 0.55; cursor: default; }
+.feedback-status { margin: 0; font-size: 0.875rem; }
+.feedback-status:not(:empty) { margin-top: 0.75rem; }
 
 .about {
   position: fixed;

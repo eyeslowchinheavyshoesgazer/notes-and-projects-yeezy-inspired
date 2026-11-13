@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>重试之前，先想想失败发生在哪 · 想法与作品</title>
+  <title>Before You Retry, Find Where It Failed · Notes and Projects</title>
   <script src="../theme.js"></script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <header class="topbar">
-    <button class="theme-toggle" type="button" aria-label="深色模式" aria-pressed="false">
+    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false">
       <span class="theme-symbol" aria-hidden="true"></span>
     </button>
-    <a class="text-control" href="../">返回首页</a>
+    <a class="text-control" href="../">Back to Home</a>
   </header>
 
   <main class="detail">
     <article>
-      <p class="detail-meta">想法示例</p>
-      <h1>重试之前，先想想失败发生在哪</h1>
+      <p class="detail-meta">Sample Note</p>
+      <h1>Before You Retry, Find Where It Failed</h1>
       <div class="detail-body">
-        <p>客户端没收到响应时，服务端可能还没处理请求，也可能已经完成，只是响应在路上丢了。两种情况看起来都是超时，重新发一次的后果却不同。</p>
-        <p>读取可以考虑自动重试。对于会改变状态的请求，先确定服务端能否识别同一次操作，再决定重试方式。</p>
+        <p>If the client gets no response, the server may still be processing the request, or it may have finished and the response was lost in transit. Both look like timeouts to the client. What happens on retry depends on whether the server already completed the operation.</p>
+        <p>You can consider automatic retries for reads. For requests that change state, first check whether the server can tell that a retry is part of the same operation. That will inform how you retry.</p>
       </div>
     </article>
   </main>

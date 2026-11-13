@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report an Issue · YANG SHUO</title>
+  <script src="./theme.js"></script>
+  <script type="module" src="./feedback.js?v=issue-editor-3"></script>
+  <link rel="stylesheet" href="./style.css?v=issue-toolbar">
+  <link rel="stylesheet" href="./image-annotator.css">
+  <link rel="stylesheet" href="./vendor/katex/katex.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false">
+      <span class="theme-symbol" aria-hidden="true"></span>
+    </button>
+    <a class="text-control" href="./">Back to Home</a>
+  </header>
+
+  <main class="feedback">
+    <h1>Report an Issue</h1>
+    <form class="feedback-form" id="feedback-form" action="./api/feedback" method="post">
+      <fieldset id="feedback-fields">
+        <div class="feedback-field">
+          <label for="feedback-work">Select an Entry</label>
+          <div class="work-picker" id="work-picker">
+            <input id="feedback-work" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="work-options" placeholder="Select or search by title" autocomplete="off" required disabled>
+            <button id="work-options-toggle" type="button" aria-label="Toggle entry list" aria-controls="work-options" aria-expanded="false" tabindex="-1" disabled></button>
+            <div class="work-menu" id="work-menu" hidden>
+              <ul id="work-options" role="listbox" aria-label="Entries"></ul>
+              <p id="work-options-empty" role="status" hidden>No matching entries</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-field" id="issue-editor">
+          <div class="issue-editor-heading">
+            <label for="feedback-message">Issue Details</label>
+            <div class="issue-editor-actions" role="group" aria-label="Issue details editor">
+              <button class="issue-tool" type="button" data-format="bold" aria-label="Bold" title="Bold">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h6a4 4 0 0 1 0 8H7m0 0h7a4 4 0 0 1 0 8H7V4" stroke-width="2.5"/></svg>
+              </button>
+              <button class="issue-tool" type="button" data-format="italic" aria-label="Italic" title="Italic">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4h8M5 20h8m2-16-6 16" stroke-width="2.5"/></svg>
+              </button>
+              <button class="issue-tool" type="button" data-format="ordered" aria-label="Numbered list" title="Numbered list">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10 5h10m-10 7h10m-10 7h10"/>
+                  <path d="M4 3h1v4M4 7h2m-2 3a1.2 1.2 0 1 1 1.6 1.8L4 14h2m-2 3h2l-1 1.5a1.25 1.25 0 1 1-1 2.5" stroke-width="1.4"/>
+                </svg>
+              </button>
+              <button class="issue-tool" type="button" data-format="unordered" aria-label="Bulleted list" title="Bulleted list">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 5h11m-11 7h11m-11 7h11"/>
+                  <circle cx="4" cy="5" r="1.2" fill="currentColor" stroke="none"/>
+                  <circle cx="4" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+                  <circle cx="4" cy="19" r="1.2" fill="currentColor" stroke="none"/>
+                </svg>
+              </button>
+              <button class="issue-tool" id="issue-attach" type="button" aria-label="Attach images" title="Attach images">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="16" rx="1"/>
+                  <path d="m4 17 4.5-4.5 3 3 4-5 5 6.5"/>
+                  <circle cx="8" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+                </svg>
+              </button>
+              <button class="issue-tool" type="button" data-format="formula" aria-label="Insert LaTeX formula" title="Insert LaTeX formula">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 20c2 2 4 .3 5-2.5L11 6c.8-3.3 3.5-4.5 5-2.5M5.5 9h8m2 5 5.5 6m-5.5 0 5.5-6"/>
+                </svg>
+              </button>
+              <button class="issue-tool" id="issue-mode-toggle" type="button" aria-controls="issue-write issue-preview" aria-label="Switch to Reading View" title="Switch to Reading View">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" data-mode-icon="reading" aria-hidden="true"><path d="M12 6a6 6 0 0 0-4-2H3v14h5a6 6 0 0 1 4 2m0-14a6 6 0 0 1 4-2h5v14h-5a6 6 0 0 0-4 2V6Z"/></svg>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" data-mode-icon="source" aria-hidden="true" hidden><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-2-13-4 16"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="issue-write">
+            <textarea id="feedback-message" name="message" rows="6" maxlength="3000" placeholder="Describe the issue in Markdown" required></textarea>
+          </div>
+          <div class="issue-preview" id="issue-preview" role="region" aria-label="Markdown reading view" hidden></div>
+          <ul class="issue-images" id="issue-images" aria-label="Attached images" hidden></ul>
+          <p class="feedback-status" id="issue-image-status" role="status"></p>
+          <template id="issue-image-template">
+            <li class="issue-image">
+              <img alt="" width="68" height="52">
+              <div class="issue-image-details">
+                <span class="issue-image-name"></span>
+                <div class="issue-image-actions">
+                  <button class="text-control" type="button" data-annotate>Annotate</button>
+                  <button class="text-control" type="button" data-remove>Remove</button>
+                </div>
+              </div>
+            </li>
+          </template>
+        </div>
+        <button class="feedback-submit" id="feedback-submit" type="submit" disabled>Submit Report</button>
+      </fieldset>
+      <p class="feedback-status" id="feedback-status" role="status"></p>
+    </form>
+  </main>
+</body>
+</html>
